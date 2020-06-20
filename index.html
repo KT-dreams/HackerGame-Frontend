@@ -8,14 +8,20 @@
   <meta name="description" content="The hacker game">
 
   <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/message.js"> </script>
 
 </head>
 
 <body>
- Please login.
- <p>
- 	Anonymous $ <input class="input-cursor" type="text" onblur="this.focus()" autofocus>
- </p>
+ <p>Please login.<p>
+
+ <div id="commands">
+ 
+ </div>
+ <div id="info"></div>
+ <div>
+ 	<strong>Anonymous: $ </strong><input class="input-cursor" type="text" id="data" onkeypress="send()" onblur="this.focus()" autofocus>
+ </div>
  
 </body>
 </html>

@@ -10,6 +10,7 @@ body
 	color: white;
 	border: 0px;
 }
+
 .input-cursor:focus {
     outline: none;
     display: inline-block;
