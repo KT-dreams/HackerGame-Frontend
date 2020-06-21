@@ -1,7 +1,10 @@
+const BASE_URL = "http://localhost:8000/";
+
 function send() { // eslint-disable-line no-unused-vars
 
    var data = document.getElementById("data");
-
+   var area = document.getElementById("area");
+   
    data.onkeypress = function(event) {
       if (event.keyCode == 13 || event.which == 13) {
          
@@ -10,8 +13,10 @@ function send() { // eslint-disable-line no-unused-vars
          var command = result[0];
          var value = result[1];
          
+         area.innerHTML += "Anonymous: $ " + x + "<br>";
+         
          var http = new XMLHttpRequest();
-         var url = "http://localhost:8000/" + command;
+         var url = BASE_URL + command;
          var params = JSON.stringify({
            command: command,
            value: value
@@ -21,19 +26,11 @@ function send() { // eslint-disable-line no-unused-vars
 
          http.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-               add_paragraph("Anonymous $ " + x);
-               add_paragraph(this.responseText);
+               area.innerHTML += this.responseText + "<br>";
             }
          };
          http.send(params);
          data.value = "";
       }
    };
-}
-
-function add_paragraph(text) {
-     var p = document.createElement("P");
-     var t = document.createTextNode(text);
-     p.appendChild(t);
-     document.getElementById("commands").appendChild(p);
 }
