@@ -1,9 +1,9 @@
-const BASE_URL = "http://localhost:8000/";
+const BASE_URL = "http://localhost:8000";
 
 function send() { // eslint-disable-line no-unused-vars
 
    var data = document.getElementById("data");
-   var area = document.getElementById("area");
+   var console_content = document.getElementById("console_content");
    
    data.onkeypress = function(event) {
       if (event.keyCode == 13 || event.which == 13) {
@@ -13,10 +13,10 @@ function send() { // eslint-disable-line no-unused-vars
          var command = result[0];
          var value = result[1];
          
-         area.innerHTML += "Anonymous: $ " + x + "<br>";
+         console_content.innerHTML += "Anonymous: $ " + x + "<br>";
          
          var http = new XMLHttpRequest();
-         var url = BASE_URL + command;
+         var url = BASE_URL + "/" + command;
          var params = JSON.stringify({
            command: command,
            value: value
@@ -26,7 +26,7 @@ function send() { // eslint-disable-line no-unused-vars
 
          http.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-               area.innerHTML += this.responseText + "<br>";
+               console_content.innerHTML += this.responseText + "<br>";
             }
          };
          http.send(params);
