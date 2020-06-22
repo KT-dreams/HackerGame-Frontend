@@ -2,6 +2,7 @@ body
 {
 	background-color: #181a1c;
 	color: white;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .input-cursor
@@ -9,6 +10,7 @@ body
 	background: none;
 	color: white;
 	border: 0px;
+		font-size:100%;
 }
 
 .input-cursor:focus {
