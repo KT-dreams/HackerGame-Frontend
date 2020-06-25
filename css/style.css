@@ -10,7 +10,7 @@ body
 	background: none;
 	color: white;
 	border: 0px;
-		font-size:100%;
+	font-size: 100%;
 }
 
 .input-cursor:focus {
