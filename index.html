@@ -9,8 +9,6 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <script type="text/javascript" src="js/message.js"> </script>
-
 </head>
 
 <body>
@@ -20,8 +18,9 @@
   <div id="console_content"></div>
   
   <div>
- 	<strong>Anonymous: $ </strong><input class="input-cursor" type="text" id="data" onkeypress="send()" autofocus>
+ 	<span id="commandPrefix">Anonymous: $ </span>
+ 	<input class="input-cursor" type="text" id="data" autocomplete="off" autofocus>
   </div>
- 
+ <script defer type="module" src="js/Application.js"></script>
 </body>
 </html>
