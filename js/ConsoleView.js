@@ -6,44 +6,35 @@ export default class ConsoleView {
 	    };
 	    
 		this.data = document.getElementById("data");
-		this.data.addEventListener("keypress", this.inputHandler);
 		this.commandPrefix = document.getElementById("commandPrefix");
 		this.setUserInputDefaults();
-		
-		this.dataRequestMode = false;
 	}
-	
-	setUserActionController(userActionController) {
-	    this.userActionController = userActionController;
-	}
-	
+
 	setUserInputDefaults() {
+		this.data.addEventListener("keypress", this.inputHandler);
 	    this.commandPrefix = 'Anonymous: $ ';
 	    this.data.attributes["type"].value = "text";
 	}
-	
-	async passwordRequest(requestInfo) {
-	    this.dataRequestMode = true;
-	    this.commandPrefix.innerHTML = requestInfo;
-	    this.data.attributes["type"].value = "password"
-	    await this.inputHandler
-	    this.setUserInputDefaults()
-	}
-	
-	inputHandler = (event) => {
-    	if(event.key != 'Enter')
-    		return;
-    	
-    	if(this.dataRequestMode) {
-            this.dataRequestMode = false;
-//            resolve(event);
-    	} else {
-        	let result = this.data.value.split(" ");
-        	let command = result[0];
-        	let commandArgs = result.slice(1);
 
-        	this.ACTION_MAPPING[command](...commandArgs);
-    	}
+	prepareRequest(messageOptions) {
+		this.data.removeEventListener("keypress", this.inputHandler);
+	    this.commandPrefix.innerHTML = messageOptions["info"];
+	    this.data.attributes["type"].value = messageOptions["type"];
+	}
+
+	isEnterPressed(event) {
+		return event.key !== 'Enter';
+	}
+
+	inputHandler = (event) => {
+    	if(this.isEnterPressed(event))
+    		return;
+
+		let result = this.data.value.split(" ");
+		let command = result[0];
+		let commandArgs = result.slice(1);
+
+		this.ACTION_MAPPING[command](...commandArgs);
 	}
 }
 /*
