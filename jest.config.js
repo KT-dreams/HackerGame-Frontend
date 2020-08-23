@@ -3,4 +3,6 @@ module.exports = {
     transform: {
         "^.+\\.jsx?$": "babel-jest"
     },
+    "testPathIgnorePatterns": ["<rootDir>/node_modules/"],
+    "collectCoverage": true
 };
